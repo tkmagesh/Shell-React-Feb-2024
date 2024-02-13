@@ -21,3 +21,5 @@
 - Node.js (LTS)
 - Visual Studio Code
 - Chrome Browser
+
+## RIA (Rich Internet Applications)

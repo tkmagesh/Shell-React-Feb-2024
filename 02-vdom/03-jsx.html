@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDOM-Demo</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.min.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        var root;
+        var count = 0;
+        function onBtnRenderClick(){
+            count++;
+            var appEle = (
+                <div>
+                    <h1>React!</h1>
+                    <hr/>
+                    <div>
+                        <span>Click Count : </span>
+                        <span>{count}</span>
+                    </div>
+                    <div>
+                        <h3>Introduction</h3>
+                        <p>Nisi tempor irure deserunt nulla nisi irure. Dolore fugiat in irure commodo consectetur nisi reprehenderit minim occaecat adipisicing consequat irure ex. In anim nisi excepteur dolor incididunt ut elit deserunt.</p>
+                        <p>Sint quis qui ipsum quis ipsum amet non. In elit consequat laborum eiusmod qui pariatur officia officia sint anim est. Sit anim cupidatat cillum labore dolor nostrud sint esse eiusmod. Cillum culpa cillum culpa officia esse et dolore. Ea sit duis voluptate anim aute culpa incididunt. Veniam esse ut ut incididunt sit.</p>
+                        <p>Mollit amet magna Lorem veniam dolor magna ullamco officia cupidatat aliqua. Dolore adipisicing esse laborum est aute minim duis adipisicing adipisicing. Minim dolore eiusmod amet culpa sunt.</p>
+                    </div>
+                    <div>
+                        <h3>Advantages</h3>
+                        <ul>
+                            <li>Declarative</li>
+                            <li>Efficient</li>
+                        </ul>
+                    </div>
+                </div>
+            )
+
+            root.render(appEle)
+            //update the count
+            // ++count;
+            // document.getElementById('spanCount').innerText = count;
+        }
+        function init(){
+            var btnRender = document.getElementById('btnRender');
+            btnRender.addEventListener('click', onBtnRenderClick)
+            root =  ReactDOM.createRoot(document.getElementById('root'))
+        }
+        window.addEventListener('load', init)
+    </script>
+</head>
+<body>
+    <button id="btnRender">Render</button>
+    <!-- <div><span>Click Count : </span><span id="spanCount">0</span></div> -->
+    <div id="root"></div>
+</body>
+</html>

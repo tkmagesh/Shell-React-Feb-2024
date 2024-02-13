@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDOM-Demo</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.min.js"></script>
+    <script>
+        var root;
+        var count = 0;
+        function onBtnRenderClick(){
+            var h1 = React.createElement('h1', { id: 'heading-1' }, 'Welcome to React!')
+            root.render(h1)
+
+            //update the count
+            // ++count;
+            document.getElementById('spanCount').innerText = count;
+        }
+        function init(){
+            var btnRender = document.getElementById('btnRender');
+            btnRender.addEventListener('click', onBtnRenderClick)
+            root =  ReactDOM.createRoot(document.getElementById('root'))
+        }
+        window.addEventListener('DOMContentLoaded', init)
+    </script>
+</head>
+<body>
+    <button id="btnRender">Render</button>
+    <div><span>Click Count : </span><span id="spanCount">0</span></div>
+    <div id="root"></div>
+</body>
+</html>

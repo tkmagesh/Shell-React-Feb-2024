@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDOM-Demo</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.min.js"></script>
+    <script>
+        var root;
+        var count = 0;
+        function onBtnRenderClick(){
+            count++;
+            var appEle = React.createElement("div", null, 
+                React.createElement('h1', null, 'React.js!'),
+                React.createElement('hr'),
+                React.createElement('div', null, 
+                    React.createElement('span', null, 'Click Count :'),
+                    React.createElement('span', null, count)
+                ),
+                React.createElement('div', null, 
+                    React.createElement('h3', null, 'Introduction'),
+                    React.createElement('p', null, 'Voluptate eiusmod ipsum aliquip elit dolor mollit in est aliqua. Eiusmod eiusmod deserunt ad dolor reprehenderit excepteur mollit magna ipsum. Aute incididunt pariatur tempor reprehenderit labore ut incididunt id et. Pariatur enim mollit elit enim exercitation nisi amet culpa ea. Irure aliqua sint aute ut ipsum.Adipisicing do dolor laboris esse laborum. Est nulla anim commodo laborum aliquip ullamco nostrud nisi pariatur est. Duis labore occaecat consequat irure nostrud elit cillum non. Ullamco cupidatat ipsum ex minim est culpa laboris id anim dolor.'),
+                    React.createElement('p', null, 'Nostrud ad velit nostrud deserunt enim ut laborum duis. Nisi laborum ullamco dolor exercitation incididunt laborum culpa cupidatat ad. Anim sit qui adipisicing in. Nostrud sit aliquip laboris ad anim commodo culpa laborum eiusmod occaecat dolor. Minim cupidatat cillum anim sunt sit.Sint in cillum irure commodo incididunt aliqua labore enim consectetur dolore magna officia reprehenderit. Ullamco cupidatat esse dolore sint velit amet qui eu. Occaecat anim pariatur proident commodo reprehenderit elit culpa voluptate est enim Lorem aliqua incididunt proident. Amet veniam commodo ex enim occaecat minim est incididunt eu. Adipisicing qui aliquip voluptate eiusmod aute anim commodo esse duis reprehenderit anim exercitation reprehenderit. Est sunt magna nulla do aliqua.'),
+                    React.createElement('p', null, 'Sit ea irure do ad irure minim. Cillum labore est pariatur irure magna quis. Dolore id in reprehenderit sint reprehenderit non irure qui adipisicing dolore. Ad commodo ullamco cillum non mollit amet non pariatur sint elit id quis. Aliqua id voluptate eiusmod Lorem id Lorem ullamco irure do quis laboris.Sint consequat ullamco exercitation culpa cupidatat qui mollit eu sit ipsum elit magna ut anim. Voluptate qui quis deserunt sint nulla reprehenderit tempor culpa. Cillum irure veniam quis in nostrud consectetur velit Lorem eiusmod. Id nulla officia sint commodo aliquip aliqua do ullamco ea. Et et incididunt fugiat ea irure proident et esse occaecat laboris.'),
+                ),
+                React.createElement('div', null,
+                    React.createElement('h3', null, 'Advantages'),
+                    React.createElement('ul', null,
+                        React.createElement('li', null, 'Declarative'),
+                        React.createElement('li', null, 'Efficient')
+                    )
+                )
+            )
+            root.render(appEle)
+            //update the count
+            // ++count;
+            document.getElementById('spanCount').innerText = count;
+        }
+        function init(){
+            var btnRender = document.getElementById('btnRender');
+            btnRender.addEventListener('click', onBtnRenderClick)
+            root =  ReactDOM.createRoot(document.getElementById('root'))
+        }
+        window.addEventListener('DOMContentLoaded', init)
+    </script>
+</head>
+<body>
+    <button id="btnRender">Render</button>
+    <!-- <div><span>Click Count : </span><span id="spanCount">0</span></div> -->
+    <div id="root"></div>
+</body>
+</html>

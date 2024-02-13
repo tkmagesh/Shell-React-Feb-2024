@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React-Component</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.min.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        var root;
+        function HelloWorld(){
+            // return React.createElement("h1", null, 'Hello World!')
+            return <h1>Hello World [jsx]!</h1>
+        }
+        function onBtnRenderClick(){
+            // var appEle = React.createElement(HelloWorld)
+            var appEle = <HelloWorld/>
+            root.render(appEle)
+        }
+        function onDocumentLoad(){
+            root = ReactDOM.createRoot(document.getElementById('root'))
+            document.getElementById('btnRender').addEventListener('click', onBtnRenderClick)
+        }
+        window.addEventListener('load', onDocumentLoad)
+    </script>
+</head>
+<body>
+    <button id="btnRender">Render</button>
+    <div id="root"></div>
+</body>
+</html>

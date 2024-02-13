@@ -23,3 +23,28 @@
 - Chrome Browser
 
 ## RIA (Rich Internet Applications)
+
+
+## JavaScript Concepts
+### Pure Function
+- A function with NO side effects
+- Is a function whose invocation can be replaced with the result of the function without affecting the outcome
+- example:
+```
+var isPrime = (function(){
+    var cache = {};
+    function isPrime(no){
+        console.log(`processing ${no}`)
+        for (var i = 2; i <= (no/2); i++ )
+            if (no % i == 0)
+                return false;
+        return true;
+    }
+    return function(no){
+        if (!cache.hasOwnProperty(no)){
+            cache[no] = isPrime(no)
+        }
+        return cache[no];
+    }
+})()
+```

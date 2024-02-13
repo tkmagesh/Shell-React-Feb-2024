@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React-Component</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.min.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        
+        
+        function Counter(){
+            console.log('rendering Counter')
+            /* 
+            const counterHookArr  = React.useState(50)
+            const count = counterHookArr[0];
+            const setCount = counterHookArr[1]; 
+            */
+            const [count, setCount] = React.useState(50)
+            const onBtnIncrementClick = () => {
+                setCount(count + 1)
+            }
+            return (
+                <div>
+                    <h1>Counter</h1>
+                    <hr/>
+                    <span>Click Counter :</span>
+                    <span>{count}</span>
+                    <br/>
+                    <button onClick={onBtnIncrementClick}>Increment</button>
+                </div>
+            )
+        }    
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(
+            <div>
+                <Counter />
+                <Counter/>
+            </div>
+        )
+        
+    </script>
+</head>
+<body>
+    
+    <div id="root"></div>
+</body>
+</html>

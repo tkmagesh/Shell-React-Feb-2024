@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React-Component</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.min.js"></script>
+    <script src="babel.min.js"></script>
+    <style>
+        .highlight{
+            font-size: 18pt;
+        }
+    </style>
+    <script type="text/babel">
+        
+        function Greeter(props){
+            console.log(props);
+            const [msg, setMsg] = React.useState('[default message]')
+            const [userName, setUserName] = React.useState('');
+
+            const onTxtUserNameInput = (evt) => {
+               setUserName(evt.target.value);
+            };
+
+            const onBtnGreetClick = (evt) => {
+                setMsg(`Hi ${userName}, ${props.template}`)
+            };
+
+            return (
+                <div>
+                    <h1>Greeter</h1>
+                    <hr/>
+                    <label htmlFor="">User Name :</label>
+                    <input type="text" onBlur={onTxtUserNameInput}/>
+                    <button onClick={onBtnGreetClick}>Greet</button>
+                    <div className="highlight">{msg}</div>
+                </div>
+            )
+        }
+        
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(
+            <div>
+                <Greeter template="Have a nice day!"/>
+                <Greeter template="Have a good day!" />
+            </div>
+        )
+        
+    </script>
+</head>
+<body>
+    
+    <div id="root"></div>
+</body>
+</html>

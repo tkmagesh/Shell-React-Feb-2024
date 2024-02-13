@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.min.js"></script>
+    <script src="babel.min.js"></script>
+    <style>
+        #root > h1 {
+            color : blue;
+        }
+        .positive {
+            color : green;
+        }
+        .negative{
+            color : red;
+        }
+    </style>
+    <script type="text/babel">
+        function Calculator1(){
+            const [n1, setN1] = React.useState(0)
+            const [n2, setN2] = React.useState(0)
+            const [result, setResult] = React.useState(0);
+
+            const doProcess = (operation) => {
+                switch (operation) {
+                    case 'add':
+                        setResult(n1 + n2)
+                        break;
+                    case 'subtract':
+                        setResult(n1 - n2)
+                        break;
+                    case 'multiply':
+                        setResult(n1 * n2)
+                        break;
+                    case 'divide':
+                        setResult(n1 / n2)
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return (
+                <>
+                    <h1>Calculator-1</h1>
+                    <hr/>
+                    <input type="number" onInput={evt => setN1(parseInt(evt.target.value))} />
+                    <input type="number" onInput={evt => setN2(parseInt(evt.target.value))}/>
+                    <br/>
+                    <button onClick={() => doProcess('add')}>Add</button>
+                    <button onClick={() => doProcess('subtract')}>Subtract</button>
+                    <button onClick={() => doProcess('multiply')}>Multiply</button>
+                    <button onClick={() => doProcess('divide')}>Divide</button>
+                    {/* { result >= 0 ? (<div className="positive">{result}</div>) : <div className="negative">{result}</div> } */}
+                    {/* <div className={ result >= 0 ? "positive" : "negative" }>{result}</div> */}
+                    <CalculatorResult data={result}/>
+                </>
+            )
+        }
+        function Calculator2() {
+                const [n1, setN1] = React.useState(0)
+                const [n2, setN2] = React.useState(0)
+                const [result, setResult] = React.useState(0);
+                const [selectedOperation, setSelectedOperation] = React.useState('');
+
+                const doProcess = (operation) => {
+                    switch (operation) {
+                        case 'add':
+                            setResult(n1 + n2)
+                            break;
+                        case 'subtract':
+                            setResult(n1 - n2)
+                            break;
+                        case 'multiply':
+                            setResult(n1 * n2)
+                            break;
+                        case 'divide':
+                            setResult(n1 / n2)
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                return (
+                    <>
+                        <h1>Calculator-2</h1>
+                        <hr />
+                        <input type="number" onInput={evt => setN1(parseInt(evt.target.value))} />
+                        <select onChange={evt => setSelectedOperation(evt.target.value)}>
+                            <option value="">---Select---</option>
+                            <option value="add">Add</option>
+                            <option value="subtract">Subtract</option>
+                            <option value="multiply">multiply</option>
+                            <option value="divide">Divide</option>
+                        </select>
+                        <input type="number" onInput={evt => setN2(parseInt(evt.target.value))} />
+                        <button onClick={() => doProcess(selectedOperation)}>Calculate</button>
+                        {/* <div>{result}</div> */}
+                        <CalculatorResult data={result} />
+                    </>
+                )
+            }
+        
+        function CalculatorResult(props){
+            return (
+                <div className={props.data >= 0 ? "positive" : "negative" }>{props.data}</div>
+            )
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(
+            <div>
+                <Calculator1/>
+                <Calculator2/>
+            </div>
+        )
+    </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>

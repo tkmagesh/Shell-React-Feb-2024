@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.min.js"></script>
+    <script src="babel.min.js"></script>
+    <style>
+        #root > h1 {
+            color : blue;
+        }
+    </style>
+    <script type="text/babel">
+        function Calculator(){
+            const [n1, setN1] = React.useState(0)
+            const [n2, setN2] = React.useState(0)
+            const [result, setResult] = React.useState(0);
+
+            const doProcess = (operation) => {
+                switch (operation) {
+                    case 'add':
+                        setResult(n1 + n2)
+                        break;
+                    case 'subtract':
+                        setResult(n1 - n2)
+                        break;
+                    case 'multiply':
+                        setResult(n1 * n2)
+                        break;
+                    case 'divide':
+                        setResult(n1 / n2)
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return (
+                <>
+                    <h1>Calculator</h1>
+                    <hr/>
+                    <input type="number" onInput={evt => setN1(parseInt(evt.target.value))} />
+                    <input type="number" onInput={evt => setN2(parseInt(evt.target.value))}/>
+                    <br/>
+                    <button onClick={() => doProcess('add')}>Add</button>
+                    <button onClick={() => doProcess('subtract')}>Subtract</button>
+                    <button onClick={() => doProcess('multiply')}>Multiply</button>
+                    <button onClick={() => doProcess('divide')}>Divide</button>
+                    <div>{result}</div>
+                </>
+            )
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Calculator/>)
+    </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>

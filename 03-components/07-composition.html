@@ -111,6 +111,18 @@
 
         function App(){
             const [userChoice, setUserChoice] = React.useState('')
+            const calculatorByChoice = () => {
+                switch (userChoice) {
+                    case 'calculator-1':
+                        return <Calculator1/>
+                        break;
+                    case 'calculator-2':
+                        return <Calculator2 />
+                        break;
+                    default:
+                        return <div>Choice a valid option</div>
+                }
+            }
             return (
                 <div>
                     <h1>Calculator</h1>
@@ -118,8 +130,11 @@
                         <button onClick={() => setUserChoice('calculator-1')}>Calculator-1</button>
                         <button onClick={() => setUserChoice('calculator-2')}>Calculator-2</button>
                     </div>
+                    {/* 
                     {userChoice == 'calculator-1' ? <Calculator1 /> : null }
-                    {userChoice == 'calculator-2' ? <Calculator2 /> : null}
+                    {userChoice == 'calculator-2' ? <Calculator2 /> : null} 
+                    */}
+                    {calculatorByChoice()}
                 </div>
             )
         }

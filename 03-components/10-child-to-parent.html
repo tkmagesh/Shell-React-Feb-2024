@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React-Component</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.min.js"></script>
+    <script src="babel.min.js"></script>
+    <style>
+        .highlight{
+            font-size: 18pt;
+        }
+    </style>
+    <script type="text/babel">
+        
+        function Greeter(){
+            console.log('Greeter rendered')
+            const [msg, setMsg] = React.useState('[default message]')
+            const [userName, setUserName] = React.useState('');
+            const onTxtUserNameInput = (evt) => {
+                /* 
+                const domTxtUserName = evt.target
+                const userName = domTxtUserName.value 
+                */
+               const userName = evt.target.value;
+               setUserName(userName);
+            };
+
+            const onClearHandler = () => {
+                setMsg('')
+                setUserName('')
+            }
+
+            const onBtnGreetClick = (evt) => {
+                setMsg(`Hi ${userName}, Have a nice day!`)
+            };
+
+            return (
+                <div>
+                    <h1>Greeter</h1>
+                    <hr/>
+                    <label htmlFor="">User Name :</label>
+                    <input type="text" onChange={onTxtUserNameInput} value={userName}/>
+                    <button onClick={onBtnGreetClick}>Greet</button>
+                    <GreetMessage message={msg} onClear={onClearHandler}/>
+                </div>
+            )
+        }
+
+        function GreetMessage({message, onClear}){
+            return (
+                <div>
+                    <div className="highlight">{message}</div>
+                    <button onClick={onClear}>Clear</button>
+                </div>
+            )
+        }
+        
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(
+            <div>
+                <Greeter />               
+            </div>
+        )
+        
+    </script>
+</head>
+<body>
+    
+    <div id="root"></div>
+</body>
+</html>

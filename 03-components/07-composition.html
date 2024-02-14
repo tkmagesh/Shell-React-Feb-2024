@@ -108,12 +108,24 @@
                 <div className={props.data >= 0 ? "positive" : "negative" }>{props.data}</div>
             )
         }
+
+        function App(){
+            const [userChoice, setUserChoice] = React.useState('')
+            return (
+                <div>
+                    <h1>Calculator</h1>
+                    <div>
+                        <button onClick={() => setUserChoice('calculator-1')}>Calculator-1</button>
+                        <button onClick={() => setUserChoice('calculator-2')}>Calculator-2</button>
+                    </div>
+                    {userChoice == 'calculator-1' ? <Calculator1 /> : null }
+                    {userChoice == 'calculator-2' ? <Calculator2 /> : null}
+                </div>
+            )
+        }
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(
-            <div>
-                <Calculator1/>
-                <Calculator2/>
-            </div>
+            <App/>
         )
     </script>
 </head>

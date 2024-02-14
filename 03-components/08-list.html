@@ -9,21 +9,35 @@
     <script src="babel.min.js"></script>
     <script type="text/babel">
         function Products(){
-            const productList = [ 'Pen', 'Pencil', 'Marker' ]
+            // const productList = [ 'Pen', 'Pencil', 'Marker' ]
             /* 
             let productListItems = []
             for(let product of productList){
                 productListItems.push(<li key={product}>{product}</li>)
             } 
             */
-            // const productList = []
-            let productListItems = productList.map(product => <li key={product}>{product}</li>)
+            const [productList,setProductList] = React.useState([])
+            const txtNewProductNameRef = React.useRef()
+            const btnAddNewClick = () => {
+                const newProductName = txtNewProductNameRef.current.value
+                setProductList([...productList, newProductName])
+            }
+            const btnRemoveClick = (idx) => {
+                productList.splice(idx, 1);
+                setProductList([...productList]);
+            }
+            let productListItems = productList.map((product,idx) => (
+                <li key={idx}>
+                    <span>{product}</span>
+                    <button onClick={() => btnRemoveClick(idx)}>X</button>
+                </li>
+            ));
             return (
                 <>
                     <h1>Products</h1>
                     <label htmlFor="">Product Name :</label>
-                    <input type="text" name="" id=""/>
-                    <button>Add New</button>
+                    <input type="text" ref={txtNewProductNameRef}/>
+                    <button onClick={btnAddNewClick}>Add New</button>
                     <ul>
                         {productListItems}
                     </ul>

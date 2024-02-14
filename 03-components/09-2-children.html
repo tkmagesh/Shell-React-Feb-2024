@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.min.js"></script>
+    <script src="babel.min.js"></script>
+    <style>
+        #root > h1 {
+            color : blue;
+        }
+        .positive {
+            color : green;
+        }
+        .negative{
+            color : red;
+        }
+    </style>
+    <script type="text/babel">
+        function Calculator1(){
+            const [n1, setN1] = React.useState(0)
+            const [n2, setN2] = React.useState(0)
+            const [result, setResult] = React.useState(0);
+
+            const doProcess = (operation) => {
+                switch (operation) {
+                    case 'add':
+                        setResult(n1 + n2)
+                        break;
+                    case 'subtract':
+                        setResult(n1 - n2)
+                        break;
+                    case 'multiply':
+                        setResult(n1 * n2)
+                        break;
+                    case 'divide':
+                        setResult(n1 / n2)
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return (
+                <>
+                    <h1>Calculator-1</h1>
+                    <hr/>
+                    <input type="number" onInput={evt => setN1(parseInt(evt.target.value))} />
+                    <input type="number" onInput={evt => setN2(parseInt(evt.target.value))}/>
+                    <br/>
+                    <button onClick={() => doProcess('add')}>Add</button>
+                    <button onClick={() => doProcess('subtract')}>Subtract</button>
+                    <button onClick={() => doProcess('multiply')}>Multiply</button>
+                    <button onClick={() => doProcess('divide')}>Divide</button>
+                    {/* { result >= 0 ? (<div className="positive">{result}</div>) : <div className="negative">{result}</div> } */}
+                    {/* <div className={ result >= 0 ? "positive" : "negative" }>{result}</div> */}
+                    <CalculatorResult data={result}/>
+                </>
+            )
+        }
+        function Calculator2() {
+                const [n1, setN1] = React.useState(0)
+                const [n2, setN2] = React.useState(0)
+                const [result, setResult] = React.useState(0);
+                const [selectedOperation, setSelectedOperation] = React.useState('');
+
+                const doProcess = (operation) => {
+                    switch (operation) {
+                        case 'add':
+                            setResult(n1 + n2)
+                            break;
+                        case 'subtract':
+                            setResult(n1 - n2)
+                            break;
+                        case 'multiply':
+                            setResult(n1 * n2)
+                            break;
+                        case 'divide':
+                            setResult(n1 / n2)
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                return (
+                    <>
+                        <h1>Calculator-2</h1>
+                        <hr />
+                        <input type="number" onInput={evt => setN1(parseInt(evt.target.value))} />
+                        <select onChange={evt => setSelectedOperation(evt.target.value)}>
+                            <option value="">---Select---</option>
+                            <option value="add">Add</option>
+                            <option value="subtract">Subtract</option>
+                            <option value="multiply">multiply</option>
+                            <option value="divide">Divide</option>
+                        </select>
+                        <input type="number" onInput={evt => setN2(parseInt(evt.target.value))} />
+                        <button onClick={() => doProcess(selectedOperation)}>Calculate</button>
+                        {/* <div>{result}</div> */}
+                        <CalculatorResult data={result} />
+                    </>
+                )
+            }
+        
+        function CalculatorResult(props){
+            return (
+                <div className={props.data >= 0 ? "positive" : "negative" }>{props.data}</div>
+            )
+        }
+
+        function Greeter() {
+            console.log('Greeter rendered')
+            const [msg, setMsg] = React.useState('[default message]')
+            const [userName, setUserName] = React.useState('');
+            const onTxtUserNameInput = (evt) => {
+                const userName = evt.target.value;
+                setUserName(userName);
+                evt.target.value = ''
+            };
+
+            const onBtnGreetClick = (evt) => {
+                setMsg(`Hi ${userName}, Have a nice day!`)
+            };
+
+            return (
+                <div>
+                    <h1>Greeter</h1>
+                    <hr />
+                    <label htmlFor="">User Name :</label>
+                    <input type="text" onBlur={onTxtUserNameInput} />
+                    <button onClick={onBtnGreetClick}>Greet</button>
+                    <div className="highlight">{msg}</div>
+                </div>
+            )
+        }
+        function Products() {
+            const [productList, setProductList] = React.useState([])
+            const txtNewProductNameRef = React.useRef()
+            const btnAddNewClick = () => {
+                const newProductName = txtNewProductNameRef.current.value
+                setProductList([...productList, newProductName])
+            }
+            const btnRemoveClick = (idx) => {
+                productList.splice(idx, 1);
+                setProductList([...productList]);
+            }
+            let productListItems = productList.map((product, idx) => (
+                <li key={idx}>
+                    <span>{product}</span>
+                    <button onClick={() => btnRemoveClick(idx)}>X</button>
+                </li>
+            ));
+            return (
+                <>
+                    <h1>Products</h1>
+                    <label htmlFor="">Product Name :</label>
+                    <input type="text" ref={txtNewProductNameRef} />
+                    <button onClick={btnAddNewClick}>Add New</button>
+                    <ul>
+                        {productListItems}
+                    </ul>
+                </>
+            )
+        }
+        
+
+        function App({children}){
+            const [userChoice, setUserChoice] = React.useState('')
+            const choices = children.filter(child => child.type === Choice);
+            const getChoiceButtons = () => {
+                return choices.map(choice => (
+                    <button 
+                        key={choice.props.choiceKey} 
+                        onClick={() => setUserChoice(choice.props.choiceKey)}
+                    >
+                        {choice.props.text}
+                    </button>
+                )); 
+            }
+            return (
+                <div>
+                    <h1>App</h1>
+                    <div>
+                        {getChoiceButtons()}
+                    </div>
+                    <div>
+                        {choices.map(choice => (<Choice {...choice.props} selected={userChoice}></Choice>))}
+                    </div>
+                </div>
+            )
+
+            
+        }
+
+        function Choice({choiceKey, component, selected}){
+            if (choiceKey === selected){
+                return component;
+            } else {
+                return null;
+            }
+        }
+
+        function DefaultChoice(){
+
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(
+            <App>
+                <Choice text="Calculator-1" choiceKey="calculator-1" component={<Calculator1/>}/>
+                <Choice text="Calculator-2" choiceKey="calculator-2" component={<Calculator2/>} />
+                <Choice text="Products" choiceKey="products" component={<Products/>} />
+                <Choice text="Greeter" choiceKey="greeter" component={<Greeter/>} />
+                <DefaultChoice>
+                    <div>Make your choice!</div>
+                </DefaultChoice> 
+            </App>
+        )
+    </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component List</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.min.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        function Products(){
+            const productList = [ 'Pen', 'Pencil', 'Marker' ]
+            /* 
+            let productListItems = []
+            for(let product of productList){
+                productListItems.push(<li key={product}>{product}</li>)
+            } 
+            */
+            // const productList = []
+            let productListItems = productList.map(product => <li key={product}>{product}</li>)
+            return (
+                <>
+                    <h1>Products</h1>
+                    <label htmlFor="">Product Name :</label>
+                    <input type="text" name="" id=""/>
+                    <button>Add New</button>
+                    <ul>
+                        {productListItems}
+                    </ul>
+                </>
+            )
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(<Products/>)
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>

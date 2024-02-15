@@ -11,7 +11,8 @@
     <!-- 
         Versions
         1. Initial version
-
+        2. Remove the direct dependency on the 'store' in the component
+        3. Introduce 'action creators' to delegate the responsibility of creating actions from the component
      -->
     <script type="text/babel">
         function spinnerReducer(currState = 50, action) {
@@ -24,15 +25,15 @@
 
         // create the spinner component
         // connect the store with the component
-        function Spinner({store}){
-            const spinnerValue = store.getState()
+        function Spinner({spinnerValue, dispatch, actionCreators}){
+            
             const onDecrementClick = () => {
-                const decrement_action = { type : 'DECREMENT'}
-                store.dispatch(decrement_action)
+                const action = actionCreators.decrement()
+                dispatch(action)
             }
             const onIncrementClick = () => {
-                const increment_action = { type : 'INCREMENT'}
-                store.dispatch(increment_action)
+                const action = actionCreators.increment()
+                dispatch(action)
             }
             return (
                 <>
@@ -45,10 +46,26 @@
             )
         }
 
+        let spinnerActionCreators = {
+            increment(){
+                const action = { type: 'INCREMENT' };
+                return action
+            },
+            decrement() {
+                const action = { type: 'DECREMENT' };
+                return action
+            }
+        }
+
         const root = ReactDOM.createRoot(document.getElementById('root'));
         const store = StateManager.createStore(spinnerReducer)
         function renderSpinner(){
-            root.render(<Spinner store={store}/>)
+            const spinnerValue = store.getState()
+            root.render(<Spinner 
+                spinnerValue={spinnerValue} 
+                dispatch={store.dispatch}
+                actionCreators={spinnerActionCreators}
+            />)
         }
         renderSpinner()
         store.subscribe(renderSpinner)

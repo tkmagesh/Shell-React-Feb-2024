@@ -2,7 +2,7 @@ let StateManager = (function(){
     let _state = undefined,
         _callbacks = [],
         _reducer = undefined,
-        _init_action = 'INIT_STATE';
+        _init_action = {type : 'INIT_STATE'};
 
     function getState(){
         return _state;

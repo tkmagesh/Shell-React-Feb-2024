@@ -11,7 +11,7 @@
     <!-- 
         Versions
         1. Initial version
-
+        2. Remove the direct dependency on the 'store' in the component
      -->
     <script type="text/babel">
         function spinnerReducer(currState = 50, action) {
@@ -24,15 +24,15 @@
 
         // create the spinner component
         // connect the store with the component
-        function Spinner({store}){
-            const spinnerValue = store.getState()
+        function Spinner({spinnerValue, dispatch}){
+            
             const onDecrementClick = () => {
                 const decrement_action = { type : 'DECREMENT'}
-                store.dispatch(decrement_action)
+                dispatch(decrement_action)
             }
             const onIncrementClick = () => {
                 const increment_action = { type : 'INCREMENT'}
-                store.dispatch(increment_action)
+                dispatch(increment_action)
             }
             return (
                 <>
@@ -48,7 +48,8 @@
         const root = ReactDOM.createRoot(document.getElementById('root'));
         const store = StateManager.createStore(spinnerReducer)
         function renderSpinner(){
-            root.render(<Spinner store={store}/>)
+            const spinnerValue = store.getState()
+            root.render(<Spinner spinnerValue={spinnerValue} dispatch={store.dispatch}/>)
         }
         renderSpinner()
         store.subscribe(renderSpinner)

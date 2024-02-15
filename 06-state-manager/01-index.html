@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="state-manager.js"></script>
+    <script type="text/babel">
+        function spinnerReducer(currState = 50, action) {
+            if (action === 'increment') return currState + 1;
+            if (action === 'decrement') return currState - 1;
+            return currState;
+        }
+        
+        let store = StateManager.createStore(spinnerReducer)
+
+        // create the spinner component
+        // connect the store with the component
+        
+    </script>
 </head>
 <body>
     <h1>Spinner</h1>

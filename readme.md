@@ -22,6 +22,10 @@
 - Visual Studio Code
 - Chrome Browser
 
+## References
+- https://bit.ly/react-videos
+- https://bit.ly/javascript-training-videos
+
 ## RIA (Rich Internet Applications)
 
 

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.min.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="state-manager.js"></script>
+    <!-- 
+        Versions
+        1. Initial version
+        2. Remove the direct dependency on the 'store' in the component
+        3. Introduce 'action creators' to delegate the responsibility of creating actions from the component
+        4. Introduce 'action dispatchers'
+        5. Simplify passing the action dispatchers
+        6. Further refactoring
+        7. Generalising the 'bindActionCreators' function
+     -->
+    <script type="text/babel">
+        function spinnerReducer(currState = 50, action) {
+            if (action.type === 'INCREMENT') return currState + 1;
+            if (action.type === 'DECREMENT') return currState - 1;
+            if (action.type === 'DOUBLE') return currState * 2;
+            return currState;
+        }
+        
+        
+
+        // create the spinner component
+        // connect the store with the component
+        function Spinner({spinnerValue, decrement, increment, double}){
+            
+            return (
+                <>
+                    <h1>Spinner</h1>
+                    <hr/>
+                    <button onClick={decrement}>Decrement</button>
+                    <span> [{spinnerValue}] </span>
+                    <button onClick={increment}>Increment</button>
+                    <button onClick={double}>Double</button>
+                </>
+            )
+        }
+
+        let spinnerActionCreators = {
+            increment(){
+                const action = { type: 'INCREMENT' };
+                return action
+            },
+            decrement() {
+                const action = { type: 'DECREMENT' };
+                return action
+            },
+            double(){
+                const action = { type : 'DOUBLE'};
+                return action
+            }
+        }
+
+        function bindActionCreators(actionCreators, dispatch){
+            const actionDispatchers = {}
+            for (let key in actionCreators){
+                actionDispatchers[key] = function(...args){
+                    const action = actionCreators[key](...args)
+                    dispatch(action)
+                }
+            }
+            return actionDispatchers;
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        const store = StateManager.createStore(spinnerReducer)
+
+        const spinnerActionDispatchers = bindActionCreators(spinnerActionCreators, store.dispatch);
+
+        function renderSpinner(){
+            const spinnerValue = store.getState()
+            root.render(<Spinner 
+                {...spinnerActionDispatchers}
+                spinnerValue={spinnerValue} 
+            />)
+        }
+        renderSpinner()
+        store.subscribe(renderSpinner)
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>

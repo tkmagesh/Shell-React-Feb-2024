@@ -48,3 +48,16 @@ var isPrime = (function(){
     }
 })()
 ```
+
+## State
+### Application State
+- Any data that need to accessed throughout the application
+- Typically this represents the domain of the application
+- DO NOT maintain this state in the component
+### UI State
+- Assists in the presentations needs of the component
+- Any change in this data MIGHT NOT to be recognized by other parts of the application
+- Feel free to maintain this data in the component
+
+## State Management 
+![image](./images/state-management.png)

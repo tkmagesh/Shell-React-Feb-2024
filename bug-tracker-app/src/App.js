@@ -1,5 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+/* 
+import React from 'react';
+console.log(React.useState) 
+*/
+
+/* 
+import * as r from 'react'
+console.log(r.useState) 
+*/
+
+/* 
+import { useState } from 'react';
+console.log(useState) 
+*/
+
+/* 
+import React, { useState } from 'react' 
+*/
+
 
 function App() {
   return (

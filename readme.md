@@ -65,3 +65,8 @@ var isPrime = (function(){
 
 ## State Management 
 ![image](./images/state-management.png)
+
+## ES6 Modules
+- Everything defined in a file (js/jsx/ts) is considered 'private' by default
+- All public entities have to be explicitly exported
+- To use any public entity they have to be explicitly imported

@@ -4,6 +4,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+/* 
+import * as calc from './calculator'
+console.log(calc.add(100,200))
+console.log(calc.subtract(100,200)) 
+*/
+
+/* 
+import * as calc from './calculator'
+const { add, subtract} = calc 
+*/
+/* 
+import { add, subtract} from './calculator'
+console.log(add(100,200))
+console.log(subtract(100,200)) 
+*/
+
+// importing the default exported object
+import calc from './calculator'
+console.log(calc)
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

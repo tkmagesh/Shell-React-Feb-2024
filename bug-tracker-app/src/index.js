@@ -1,3 +1,25 @@
+
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import { Provider } from 'react-redux'
+
+import BugTracker from './bugs';
+import ProjectsTracker from './projects';
+
+import store from './store'
+
+const root = createRoot(document.getElementById('root'));
+
+root.render(
+    <Provider store={store}>
+        <ProjectsTracker/>
+        <BugTracker/>
+    </Provider>
+)
+
+
+// without using react-redux
+/* 
 import { bindActionCreators  } from 'redux'
 import { createRoot } from 'react-dom/client';
 import './index.css';
@@ -30,4 +52,5 @@ function renderApp(){
     )
 }
 renderApp()
-store.subscribe(renderApp)
+store.subscribe(renderApp) 
+*/

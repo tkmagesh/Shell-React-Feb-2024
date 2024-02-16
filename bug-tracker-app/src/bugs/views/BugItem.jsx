@@ -4,6 +4,7 @@ function BugItem({bug, toggle, remove}){
             <span
                 onClick={() => toggle(bug)}
                 className={"bugname " + (bug.isClosed ? "closed" : "")}>{bug.name}</span>
+            <span><small> [ { bug.projectName } ] </small></span>
             <div className="datetime">{[bug.createdAt.toString()]}</div>
             <button onClick={() => remove(bug)}>Remove</button>
         </li>

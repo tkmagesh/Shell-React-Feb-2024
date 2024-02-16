@@ -2,10 +2,11 @@
 
 let newBugId = 0; //to be fixed
 
-export function createNew(newBugName){
+export function createNew(newBugName, projectId){
     const newBug =  {
         id: newBugId++,
         name: newBugName,
+        projectId : projectId,
         createdAt: new Date(),
         isClosed: false
     }

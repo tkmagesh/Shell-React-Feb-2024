@@ -1,8 +1,13 @@
 
 import { useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as projectActionCreators  from './actions';
 
-export default function ProjectsTracker({projects, createNew, remove}){
-    
+export default function ProjectsTracker(/* {projects, createNew, remove} */){
+    const projects = useSelector(({projects}) => projects)
+    const { createNew, remove } = bindActionCreators(projectActionCreators, useDispatch());
+
     const [newProjectName, setNewProjectName]= useState('')
     const projectItems = projects.map(project => (
         <li key={project.id}>

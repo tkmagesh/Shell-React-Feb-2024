@@ -28,6 +28,8 @@
 
 ## RIA (Rich Internet Applications)
 
+## Real World React Applications
+- https://github.com/jeromedalbert/real-world-react-apps
 
 ## JavaScript Concepts
 ### Pure Function

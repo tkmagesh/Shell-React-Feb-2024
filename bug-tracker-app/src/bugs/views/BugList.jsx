@@ -2,7 +2,7 @@ import BugItem from './BugItem'
 
 function BugList({bugs, toggle, remove, removeClosed}){
         const bugItems = bugs.map((bug) => (
-        <BugItem {...{bug, toggle, remove}}/>
+        <BugItem key={bug.id} {...{bug, toggle, remove}}/>
     ))
     return (
         <section className="list">

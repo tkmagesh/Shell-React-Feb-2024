@@ -1,6 +1,6 @@
 const initialState = [
-    { id: 1, name : 'Bug - 1', isClosed : false, createdAt : new Date()},
-    { id: 2, name : 'Bug - 2', isClosed : true, createdAt : new Date() },
+    { id: 1, name : 'Bug - 1', isClosed : false, projectId : 1, createdAt : new Date()},
+    { id: 2, name : 'Bug - 2', isClosed : true, projectId : 2, createdAt : new Date() },
 ]
 function bugsReducer(currentState=initialState, action){
     switch (action.type) {

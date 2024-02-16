@@ -83,3 +83,6 @@ var isPrime = (function(){
 - Receive data & action dispatchers from Smart components and present them to the user
 ### Guideline
 - Fewer components & as many presentation components as required
+
+## Redux Middleware
+- Used to encapsulate any logic that is common across actions

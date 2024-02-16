@@ -70,3 +70,14 @@ var isPrime = (function(){
 - Everything defined in a file (js/jsx/ts) is considered 'private' by default
 - All public entities have to be explicitly exported
 - To use any public entity they have to be explicitly imported
+
+## Components
+### Smart/Container components
+- Communicate to redux infrastructure to prepare the data & create action dispatchers
+- Cascade the data & action dispatchers to the presentation components
+- DO NOT do any presentation task
+### Presentation/Dumb components
+- DO NOT communicate with redux infrastructure
+- Receive data & action dispatchers from Smart components and present them to the user
+### Guideline
+- Fewer components & as many presentation components as required

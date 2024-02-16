@@ -1,37 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { bindActionCreators  } from 'redux'
+import { createRoot } from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-/* 
-import * as calc from './calculator'
-console.log(calc.add(100,200))
-console.log(calc.subtract(100,200)) 
-*/
+import * as bugActionCreators from './bugs/actions'
+import store from './store'
+import BugTracker from './bugs';
 
-/* 
-import * as calc from './calculator'
-const { add, subtract} = calc 
-*/
-/* 
-import { add, subtract} from './calculator'
-console.log(add(100,200))
-console.log(subtract(100,200)) 
-*/
+const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch)
 
-// importing the default exported object
-import calc from './calculator'
-console.log(calc)
+const root = createRoot(document.getElementById('root'));
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function renderBugTracker(){
+    const bugs = store.getState()
+    root.render(<BugTracker bugs={bugs} {...bugActionDispatchers }/>)
+}
+renderBugTracker()
+store.subscribe(renderBugTracker)

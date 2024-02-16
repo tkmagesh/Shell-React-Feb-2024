@@ -6,6 +6,8 @@ import * as projectActionCreators  from './actions';
 
 export default function ProjectsTracker(/* {projects, createNew, remove} */){
     const projects = useSelector(({projects}) => projects)
+    console.log(projects);
+    
     const { createNew, remove } = bindActionCreators(projectActionCreators, useDispatch());
 
     const [newProjectName, setNewProjectName]= useState('')

@@ -1,0 +1,25 @@
+{
+  "bugs": [
+    {
+      "id": 4,
+      "name": "Server communication failure",
+      "projectId": 1,
+      "createdAt": "2023-06-14T11:10:10.067Z",
+      "isClosed": false
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Bug Tracker"
+    },
+    {
+      "id": 3,
+      "name": "Time Tracker"
+    },
+    {
+      "name": "Explore CURL",
+      "id": 6
+    }
+  ]
+}

@@ -5,7 +5,8 @@ function useBugs(){
         return {
             bugs : bugs.map(bug => ({
                 ...bug,
-                projectName : projects.find(project => project.id === bug.projectId).name
+                /* projectName : projects.find(project => project.id === bug.projectId).name */
+                projectName : bug.projectId
             })),
             closedCount : bugs.reduce((prevResult, bug) => bug.isClosed ? prevResult + 1 : prevResult, 0),
             projects : projects

@@ -26,8 +26,7 @@ import calc from './calculator'
 console.log(calc) 
 */
 
-import * as bugActionCreators from './bugs/actions'
-console.log(bugActionCreators)
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
